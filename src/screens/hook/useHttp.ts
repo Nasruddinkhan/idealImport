@@ -54,13 +54,13 @@ const useHttp = <T = any>(url: string, options: HttpOptions = {}): UseHttpRespon
     fetchData(url, options, setLoading, setError, setData, signal);
 
     return () => {
-      controller.abort(); // Cancel fetch request on cleanup
+      controller.abort();
     };
   }, [url, options.method, options.headers, options.body]);
 
   useEffect(() => {
     const cleanup = fetchDataCallback();
-    return cleanup; // Cleanup function to cancel the request
+    return cleanup; 
   }, [fetchDataCallback]);
 
   return { data, loading, error };
