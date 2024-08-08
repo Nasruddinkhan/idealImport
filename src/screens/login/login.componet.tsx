@@ -4,17 +4,21 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RightIcon } from './../../assets/icons';
 import { RootStackParamList } from './../../constants';
+import { useDispatch } from 'react-redux';
+import { authActions } from './../../store/auth/auth';
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
 export default function LoginScreen() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
- const navigation = useNavigation<LoginScreenNavigationProp>();
+  const navigation = useNavigation<LoginScreenNavigationProp>();
   const handleLogin = () => {
     if (!email || !password) {
       Alert.alert('Error', 'Please enter both email and password');
     } else {
       Alert.alert('Success', 'Logged in successfully!');
+      dispatch(authActions.login() );
       navigation.navigate('Home');
     }
   };

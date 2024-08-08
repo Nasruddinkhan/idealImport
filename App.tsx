@@ -7,6 +7,8 @@ import { StyleSheet, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import {Tabs} from './src/tabsnavigators';
 import { Login } from './src/screens';
+import { Provider } from 'react-redux';
+import  store  from './src/store'
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): React.JSX.Element {
@@ -17,6 +19,8 @@ function App(): React.JSX.Element {
   };
 
   return (
+    <Provider store={store}>
+
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Login"
@@ -28,6 +32,7 @@ function App(): React.JSX.Element {
         <Stack.Screen name="Home" component={Tabs} /> 
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 
